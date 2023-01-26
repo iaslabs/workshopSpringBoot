@@ -1,0 +1,13 @@
+package co.com.ias.projectBird;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class ProjectBirdApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
