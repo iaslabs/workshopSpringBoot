@@ -7,4 +7,8 @@ public class CountryId {
     public CountryId(Long value) {
         this.value = value;
     }
+
+    public Long getValue() {
+        return value;
+    }
 }

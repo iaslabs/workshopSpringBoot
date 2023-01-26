@@ -17,4 +17,12 @@ public class Bird {
    public BirdCommonName getName() {
       return name;
    }
+
+   public BirdId getId() {
+      return id;
+   }
+
+   public BirdScientificName getScientificName() {
+      return scientificName;
+   }
 }
