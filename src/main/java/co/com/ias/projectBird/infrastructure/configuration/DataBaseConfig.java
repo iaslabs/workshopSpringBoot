@@ -19,7 +19,7 @@ public class DataBaseConfig {
                             environment.getProperty("spring.datasource.url"));
     }
 
-    @Bean
+    /*@Bean
     @Profile("test")
     public DataSource dataSource(DbSecret dbSecret){
         HikariConfig hikariConfig = new HikariConfig();
@@ -28,7 +28,7 @@ public class DataBaseConfig {
         hikariConfig.setPassword(dbSecret.password());
         hikariConfig.setDriverClassName("spring.datasource.driverClassName");
         return new HikariDataSource(hikariConfig);
-    }
+    }*/
 
     @Bean
     @Profile("dev")
