@@ -2,13 +2,13 @@ package co.com.ias.projectBird.domain.model.bird;
 
 public class BirdId {
 
-    private final Long id;
+    private final Long value;
 
-    public BirdId(Long id) {
-        this.id = id;
+    public BirdId(Long value) {
+        this.value = value;
     }
 
-    public Long getId() {
-        return id;
+    public Long getValue() {
+        return value;
     }
 }

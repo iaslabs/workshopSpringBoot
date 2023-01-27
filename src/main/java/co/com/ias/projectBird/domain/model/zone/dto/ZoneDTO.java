@@ -1,5 +1,9 @@
 package co.com.ias.projectBird.domain.model.zone.dto;
 
+import co.com.ias.projectBird.domain.model.zone.Zone;
+import co.com.ias.projectBird.domain.model.zone.ZoneId;
+import co.com.ias.projectBird.domain.model.zone.ZoneName;
+
 public class ZoneDTO {
 
     private Long id;
@@ -24,5 +28,17 @@ public class ZoneDTO {
 
     public void setZoneName(String zoneName) {
         this.zoneName = zoneName;
+    }
+
+    public Zone toDomain(ZoneDTO in) {
+        return new Zone(new ZoneId(in.getId()), new ZoneName(in.getZoneName()));
+    }
+
+    public ZoneDTO fromDomain(Zone in) {
+        return new ZoneDTO(in
+                                   .getZoneId()
+                                   .getValue(), in
+                                   .getZoneName()
+                                   .getValue());
     }
 }

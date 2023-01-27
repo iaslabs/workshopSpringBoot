@@ -1,5 +1,9 @@
 package co.com.ias.projectBird.domain.model.bird;
 
+import co.com.ias.projectBird.domain.model.country.Country;
+
+import java.util.List;
+
 public class Bird {
 
     private final BirdCommonName name;
@@ -8,11 +12,13 @@ public class Bird {
 
     private final BirdScientificName scientificName;
 
+
     public Bird(BirdCommonName name, BirdId id, BirdScientificName scientificName) {
         this.name = name;
         this.id = id;
 
         this.scientificName = scientificName;
+
     }
 
     public BirdCommonName getName() {
@@ -25,5 +31,9 @@ public class Bird {
 
     public BirdScientificName getScientificName() {
         return scientificName;
+
     }
+
+
 }
+
