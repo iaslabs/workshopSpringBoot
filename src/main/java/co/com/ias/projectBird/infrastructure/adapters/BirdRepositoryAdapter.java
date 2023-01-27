@@ -6,7 +6,9 @@ import co.com.ias.projectBird.domain.model.bird.Bird;
 import co.com.ias.projectBird.domain.model.gateaway.IBirdRepository;
 import co.com.ias.projectBird.infrastructure.adapters.jpa.IBirdRepositoryAdapter;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Repository;
 
+@Repository
 @AllArgsConstructor
 public class BirdRepositoryAdapter implements IBirdRepository {
 

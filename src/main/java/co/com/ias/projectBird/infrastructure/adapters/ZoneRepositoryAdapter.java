@@ -5,7 +5,9 @@ import java.util.List;
 import co.com.ias.projectBird.domain.model.gateaway.IZoneRepository;
 import co.com.ias.projectBird.domain.model.zone.Zone;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Repository;
 
+@Repository
 @AllArgsConstructor
 public class ZoneRepositoryAdapter implements IZoneRepository {
 
