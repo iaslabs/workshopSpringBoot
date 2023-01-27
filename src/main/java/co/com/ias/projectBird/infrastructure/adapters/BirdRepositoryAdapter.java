@@ -1,4 +1,39 @@
 package co.com.ias.projectBird.infrastructure.adapters;
 
-public class BirdRepositoryAdapter {
+import java.util.List;
+
+import co.com.ias.projectBird.domain.model.bird.Bird;
+import co.com.ias.projectBird.domain.model.gateaway.BirdRepository;
+import co.com.ias.projectBird.infrastructure.adapters.jpa.IBirdRepositoryAdapter;
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+public class BirdRepositoryAdapter implements BirdRepository {
+
+    private final IBirdRepositoryAdapter iBirdRepositoryAdapter;
+
+    @Override
+    public Bird saveBird(Bird bird) {
+        return null;
+    }
+
+    @Override
+    public Bird updateBird(Bird bird) {
+        return null;
+    }
+
+    @Override
+    public Bird findBirdById(Long id) {
+        return null;
+    }
+
+    @Override
+    public List<Bird> findAllBirds() {
+        return null;
+    }
+
+    @Override
+    public Boolean deleteBird(Long id) {
+        return null;
+    }
 }

@@ -1,4 +1,37 @@
 package co.com.ias.projectBird.infrastructure.adapters;
 
-public class ZoneRepositoryAdapter {
+import java.util.List;
+
+import co.com.ias.projectBird.domain.model.gateaway.ZoneRepository;
+import co.com.ias.projectBird.domain.model.zone.Zone;
+import co.com.ias.projectBird.infrastructure.adapters.jpa.entity.dbo.ZoneDBO;
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
+public class ZoneRepositoryAdapter implements ZoneRepository{
+
+    @Override
+    public Zone saveZone(Zone zone) {
+        return null;
+    }
+
+    @Override
+    public Zone updateZone(Zone zone) {
+        return null;
+    }
+
+    @Override
+    public Zone findZoneById(Long id) {
+        return null;
+    }
+
+    @Override
+    public List<Zone> findAllZones() {
+        return null;
+    }
+
+    @Override
+    public Boolean deleteZone(Long id) {
+        return null;
+    }
 }
