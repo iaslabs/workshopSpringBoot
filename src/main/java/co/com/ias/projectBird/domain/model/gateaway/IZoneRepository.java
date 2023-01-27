@@ -4,7 +4,7 @@ import co.com.ias.projectBird.domain.model.zone.Zone;
 
 import java.util.List;
 
-public interface ZoneRepository  {
+public interface IZoneRepository {
 
 	Zone saveZone(Zone zone);
 

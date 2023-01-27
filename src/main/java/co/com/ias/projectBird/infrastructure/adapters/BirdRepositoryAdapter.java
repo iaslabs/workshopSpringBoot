@@ -3,12 +3,12 @@ package co.com.ias.projectBird.infrastructure.adapters;
 import java.util.List;
 
 import co.com.ias.projectBird.domain.model.bird.Bird;
-import co.com.ias.projectBird.domain.model.gateaway.BirdRepository;
+import co.com.ias.projectBird.domain.model.gateaway.IBirdRepository;
 import co.com.ias.projectBird.infrastructure.adapters.jpa.IBirdRepositoryAdapter;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class BirdRepositoryAdapter implements BirdRepository {
+public class BirdRepositoryAdapter implements IBirdRepository {
 
     private final IBirdRepositoryAdapter iBirdRepositoryAdapter;
 

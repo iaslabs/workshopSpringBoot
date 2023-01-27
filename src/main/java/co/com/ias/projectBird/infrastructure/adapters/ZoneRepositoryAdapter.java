@@ -2,13 +2,12 @@ package co.com.ias.projectBird.infrastructure.adapters;
 
 import java.util.List;
 
-import co.com.ias.projectBird.domain.model.gateaway.ZoneRepository;
+import co.com.ias.projectBird.domain.model.gateaway.IZoneRepository;
 import co.com.ias.projectBird.domain.model.zone.Zone;
-import co.com.ias.projectBird.infrastructure.adapters.jpa.entity.dbo.ZoneDBO;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class ZoneRepositoryAdapter implements ZoneRepository{
+public class ZoneRepositoryAdapter implements IZoneRepository {
 
     @Override
     public Zone saveZone(Zone zone) {

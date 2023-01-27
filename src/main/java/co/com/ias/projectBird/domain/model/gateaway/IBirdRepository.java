@@ -4,7 +4,7 @@ import co.com.ias.projectBird.domain.model.bird.Bird;
 
 import java.util.List;
 
-public interface BirdRepository {
+public interface IBirdRepository {
 
 	Bird saveBird(Bird bird);
 

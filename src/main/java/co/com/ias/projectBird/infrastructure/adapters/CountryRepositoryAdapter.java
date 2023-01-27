@@ -3,13 +3,12 @@ package co.com.ias.projectBird.infrastructure.adapters;
 import java.util.List;
 
 import co.com.ias.projectBird.domain.model.country.Country;
-import co.com.ias.projectBird.domain.model.gateaway.CountryRepository;
+import co.com.ias.projectBird.domain.model.gateaway.ICountryRepository;
 import co.com.ias.projectBird.infrastructure.adapters.jpa.ICountryRepositoryAdapter;
-import co.com.ias.projectBird.infrastructure.adapters.jpa.entity.dbo.CountryDBO;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class CountryRepositoryAdapter implements CountryRepository{
+public class CountryRepositoryAdapter implements ICountryRepository {
     private final ICountryRepositoryAdapter iCountryRepositoryAdapter;
 
     @Override
