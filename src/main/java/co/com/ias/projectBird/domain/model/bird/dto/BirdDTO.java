@@ -54,7 +54,7 @@ public class BirdDTO {
                 );
     }
 
-    public  BirdDTO fromDomain(Bird bird){
+    public  static BirdDTO fromDomain(Bird bird){
         return  new BirdDTO(bird.getId().getValue(),
                 bird.getName().getValue(),
                 bird.getScientificName().getValue());

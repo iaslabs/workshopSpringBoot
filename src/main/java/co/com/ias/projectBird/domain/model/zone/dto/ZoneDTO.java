@@ -34,7 +34,7 @@ public class ZoneDTO {
         return new Zone(new ZoneId(in.getId()), new ZoneName(in.getZoneName()));
     }
 
-    public ZoneDTO fromDomain(Zone in) {
+    public static ZoneDTO fromDomain(Zone in) {
         return new ZoneDTO(in
                                    .getZoneId()
                                    .getValue(), in

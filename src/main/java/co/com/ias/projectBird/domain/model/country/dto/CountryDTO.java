@@ -46,7 +46,7 @@ public class CountryDTO {
                            new CountryZone(in.getCountryName()));
     }
 
-    public CountryDTO fromDomain(Country in) {
+    public static CountryDTO fromDomain(Country in) {
         return new CountryDTO(in
                                       .getId()
                                       .getValue(), in
