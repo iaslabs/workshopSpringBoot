@@ -3,7 +3,6 @@ package co.com.ias.projectBird.domain.model.country.dto;
 import co.com.ias.projectBird.domain.model.country.Country;
 import co.com.ias.projectBird.domain.model.country.CountryId;
 import co.com.ias.projectBird.domain.model.country.CountryName;
-import co.com.ias.projectBird.domain.model.country.CountryZone;
 
 public class CountryDTO {
 
@@ -11,10 +10,9 @@ public class CountryDTO {
     private String countryName;
     private String countryZone;
 
-    public CountryDTO(Long id, String countryName, String countryZone) {
+    public CountryDTO(Long id, String countryName) {
         this.id = id;
         this.countryName = countryName;
-        this.countryZone = countryZone;
     }
 
     public Long getId() {
@@ -42,17 +40,10 @@ public class CountryDTO {
     }
 
     public Country toDomain(CountryDTO in) {
-        return new Country(new CountryId(in.getId()), new CountryName(in.getCountryName()),
-                           new CountryZone(in.getCountryName()));
+        return new Country(new CountryId(in.getId()), new CountryName(in.getCountryName()));
     }
 
     public static CountryDTO fromDomain(Country in) {
-        return new CountryDTO(in
-                                      .getId()
-                                      .getValue(), in
-                                      .getCountryName()
-                                      .getValue(), in
-                                      .getCountryZone()
-                                      .getValue());
+        return new CountryDTO(in.getId().getValue(), in.getCountryName().getValue());
     }
 }

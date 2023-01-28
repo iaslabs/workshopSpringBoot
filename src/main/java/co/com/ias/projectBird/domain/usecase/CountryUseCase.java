@@ -31,25 +31,25 @@ public class CountryUseCase {
        return CountryDTO.fromDomain(this.iCountryRepository.saveCountry(country));
     }
 
-public CountryDTO updateCountry(CountryDTO countryDTO){
-    Country country = countryDTO.toDomain(countryDTO);
-    return CountryDTO.fromDomain(iCountryRepository.updateCountry(country));
-}
-
-public CountryDTO findCountryById(Long id) {
-    Country country = this.iCountryRepository.findCountryById(id);
-    if (country != null) {
-        return CountryDTO.fromDomain(country);
+    public CountryDTO updateCountry(CountryDTO countryDTO){
+        Country country = countryDTO.toDomain(countryDTO);
+        return CountryDTO.fromDomain(iCountryRepository.updateCountry(country));
     }
-    return null;
-}
 
-public ArrayList<CountryDTO> findAllCountries() {
-    List<Country> countries = this.iCountryRepository.findAllCountries();
-    return (ArrayList<CountryDTO>) countries.stream().map(CountryDTO::fromDomain).collect(Collectors.toList());
-}
+    public CountryDTO findCountryById(Long id) {
+        Country country = this.iCountryRepository.findCountryById(id);
+        if (country != null) {
+            return CountryDTO.fromDomain(country);
+        }
+        return null;
+    }
 
-public Boolean deleteCountry(Long id){
-    return iCountryRepository.deleteCountry(id);
-}
-}
+    public ArrayList<CountryDTO> findAllCountries() {
+        List<Country> countries = this.iCountryRepository.findAllCountries();
+        return (ArrayList<CountryDTO>) countries.stream().map(CountryDTO::fromDomain).collect(Collectors.toList());
+    }
+
+    public Boolean deleteCountry(Long id){
+        return iCountryRepository.deleteCountry(id);
+    }
+    }

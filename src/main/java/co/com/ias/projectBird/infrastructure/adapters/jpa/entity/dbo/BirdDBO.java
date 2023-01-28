@@ -1,5 +1,9 @@
 package co.com.ias.projectBird.infrastructure.adapters.jpa.entity.dbo;
 
+import co.com.ias.projectBird.domain.model.bird.Bird;
+import co.com.ias.projectBird.domain.model.bird.BirdCommonName;
+import co.com.ias.projectBird.domain.model.bird.BirdId;
+import co.com.ias.projectBird.domain.model.bird.BirdScientificName;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
@@ -31,4 +35,26 @@ public class BirdDBO {
 			mappedBy = "birdsList")
 	@JsonIgnoreProperties("birdsList")
 	private List<CountryDBO> countriesList;
+
+	public BirdDBO(Long id, String commonName, String scientificName) {
+		this.id = id;
+		this.commonName = commonName;
+		this.scientificName = scientificName;
+	}
+
+	public static Bird toDomain(BirdDBO birdDBO){
+		return new Bird(
+				new BirdCommonName(birdDBO.getCommonName()),
+				new BirdId(birdDBO.getId()),
+				new BirdScientificName(birdDBO.getScientificName())
+		);
+	}
+
+	public static BirdDBO fromDomain(Bird bird){
+		return new BirdDBO(
+				bird.getId().getValue(),
+				bird.getName().getValue(),
+				bird.getScientificName().getValue()
+		);
+	}
 }

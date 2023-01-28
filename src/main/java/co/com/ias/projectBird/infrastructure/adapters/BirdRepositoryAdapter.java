@@ -1,10 +1,14 @@
 package co.com.ias.projectBird.infrastructure.adapters;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
 
 import co.com.ias.projectBird.domain.model.bird.Bird;
 import co.com.ias.projectBird.domain.model.gateaway.IBirdRepository;
 import co.com.ias.projectBird.infrastructure.adapters.jpa.IBirdRepositoryAdapter;
+import co.com.ias.projectBird.infrastructure.adapters.jpa.entity.dbo.BirdDBO;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -16,26 +20,47 @@ public class BirdRepositoryAdapter implements IBirdRepository {
 
     @Override
     public Bird saveBird(Bird bird) {
-        return null;
+        BirdDBO birdSaved = iBirdRepositoryAdapter.save(BirdDBO.fromDomain(bird));
+        return BirdDBO.toDomain(birdSaved);
+
     }
 
     @Override
     public Bird updateBird(Bird bird) {
-        return null;
+        BirdDBO dbo = BirdDBO.fromDomain(bird);
+        Optional<BirdDBO> elementFound = iBirdRepositoryAdapter.findById(dbo.getId());
+        if(elementFound.isEmpty()){
+            throw new NullPointerException("No existe pájaro con el id: " + bird.getId().getValue());
+
+        } else {
+            BirdDBO birdSaved =  iBirdRepositoryAdapter.save(dbo);
+            return BirdDBO.toDomain(birdSaved);
+        }
     }
 
     @Override
     public Bird findBirdById(Long id) {
-        return null;
+        Optional<BirdDBO> dbo = iBirdRepositoryAdapter.findById(id);
+        if (dbo.isEmpty()){
+            throw new NullPointerException("No existe pájaro con el id: " + id);
+        } else {
+            return BirdDBO.toDomain(dbo.get());
+        }
     }
 
     @Override
     public List<Bird> findAllBirds() {
-        return null;
+        return iBirdRepositoryAdapter.findAll().stream().map(BirdDBO::toDomain).collect(Collectors.toList());
     }
 
     @Override
     public Boolean deleteBird(Long id) {
-        return null;
+        AtomicReference<Boolean> bool = new AtomicReference<>(false);
+        Optional<BirdDBO> dbo = iBirdRepositoryAdapter.findById(id);
+        dbo.ifPresent(value->{
+            iBirdRepositoryAdapter.deleteById(id);
+            bool.set(true);
+        });
+        return bool.get();
     }
 }

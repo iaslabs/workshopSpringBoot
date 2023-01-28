@@ -1,5 +1,8 @@
 package co.com.ias.projectBird.infrastructure.adapters.jpa.entity.dbo;
 
+import co.com.ias.projectBird.domain.model.country.Country;
+import co.com.ias.projectBird.domain.model.country.CountryId;
+import co.com.ias.projectBird.domain.model.country.CountryName;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
@@ -31,4 +34,23 @@ public class CountryDBO {
 			inverseJoinColumns = @JoinColumn(name = "country_id"))
 	@JsonIgnoreProperties("countriesList")
 	private List<BirdDBO> birdsList;
+
+	public CountryDBO(Long id, String countryName) {
+		this.id = id;
+		this.countryName = countryName;
+	}
+
+	public static CountryDBO fromDomain(Country country){
+		return new CountryDBO(
+				country.getId().getValue(),
+				country.getCountryName().getValue()
+		);
+	}
+
+	public static Country toDomain(CountryDBO countryDBO){
+		return new Country(
+				new CountryId(countryDBO.getId()),
+				new CountryName(countryDBO.getCountryName())
+		);
+	}
 }
