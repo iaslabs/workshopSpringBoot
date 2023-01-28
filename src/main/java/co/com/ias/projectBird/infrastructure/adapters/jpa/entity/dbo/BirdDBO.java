@@ -1,40 +1,34 @@
 package co.com.ias.projectBird.infrastructure.adapters.jpa.entity.dbo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.List;
+
+@Entity
+@Table(name = "Bird")
+@Builder
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class BirdDBO {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	private String commonName;
 
 	private String scientificName;
 
-	public BirdDBO(Long id, String commonName, String scientificName) {
-		this.id = id;
-		this.commonName = commonName;
-		this.scientificName = scientificName;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getCommonName() {
-		return commonName;
-	}
-
-	public void setCommonName(String commonName) {
-		this.commonName = commonName;
-	}
-
-	public String getScientificName() {
-		return scientificName;
-	}
-
-	public void setScientificName(String scientificName) {
-		this.scientificName = scientificName;
-	}
+	@ManyToMany(fetch = FetchType.LAZY,
+			cascade = {
+					CascadeType.PERSIST,
+					CascadeType.MERGE
+			},
+			mappedBy = "birdsList")
+	@JsonIgnoreProperties("birdsList")
+	private List<CountryDBO> countriesList;
 }

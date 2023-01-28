@@ -1,38 +1,34 @@
 package co.com.ias.projectBird.infrastructure.adapters.jpa.entity.dbo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.List;
+
+@Entity
+@Table(name = "Country")
+@Builder
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class CountryDBO {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String countryName;
-	private String countryZone;
 
-	public CountryDBO(Long id, String countryName, String countryZone) {
-		this.id = id;
-		this.countryName = countryName;
-		this.countryZone = countryZone;
-	}
+	@ManyToOne
+	@JoinColumn(name = "zone_id")
+	private ZoneDBO countryZone;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getCountryName() {
-		return countryName;
-	}
-
-	public void setCountryName(String countryName) {
-		this.countryName = countryName;
-	}
-
-	public String getCountryZone() {
-		return countryZone;
-	}
-
-	public void setCountryZone(String countryZone) {
-		this.countryZone = countryZone;
-	}
+	@ManyToMany
+	@JoinTable(
+			name = "birds_list",
+			joinColumns = @JoinColumn(name = "bird_id"),
+			inverseJoinColumns = @JoinColumn(name = "country_id"))
+	@JsonIgnoreProperties("countriesList")
+	private List<BirdDBO> birdsList;
 }
