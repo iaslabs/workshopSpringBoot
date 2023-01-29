@@ -7,6 +7,7 @@ import co.com.ias.projectBird.domain.model.country.dto.CountryDTO;
 import co.com.ias.projectBird.domain.model.gateaway.IBirdRepository;
 import co.com.ias.projectBird.domain.model.gateaway.ICountryRepository;
 import co.com.ias.projectBird.domain.model.gateaway.IZoneRepository;
+import co.com.ias.projectBird.domain.model.zone.Zone;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +28,10 @@ public class CountryUseCase {
 
 
     public CountryDTO saveCountry(CountryDTO countryDTO){
+        Zone zone = iZoneRepository.findZoneById(countryDTO.getCountryZone());
        Country country = countryDTO.toDomain(countryDTO);
-       return CountryDTO.fromDomain(this.iCountryRepository.saveCountry(country));
+
+       return CountryDTO.fromDomain(this.iCountryRepository.saveCountry(country, zone));
     }
 
     public CountryDTO updateCountry(CountryDTO countryDTO){

@@ -7,8 +7,10 @@ import java.util.stream.Collectors;
 
 import co.com.ias.projectBird.domain.model.country.Country;
 import co.com.ias.projectBird.domain.model.gateaway.ICountryRepository;
+import co.com.ias.projectBird.domain.model.zone.Zone;
 import co.com.ias.projectBird.infrastructure.adapters.jpa.ICountryRepositoryAdapter;
 import co.com.ias.projectBird.infrastructure.adapters.jpa.entity.dbo.CountryDBO;
+import co.com.ias.projectBird.infrastructure.adapters.jpa.entity.dbo.ZoneDBO;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -19,8 +21,10 @@ public class CountryRepositoryAdapter implements ICountryRepository {
     private final ICountryRepositoryAdapter iCountryRepositoryAdapter;
 
     @Override
-    public Country saveCountry(Country country) {
+    public Country saveCountry(Country country, Zone zone) {
+        ZoneDBO zoneDBO = ZoneDBO.fromDomain(zone);
         CountryDBO countrySaved = CountryDBO.fromDomain(country);
+        countrySaved.setCountryZone(zoneDBO);
         return CountryDBO.toDomain(iCountryRepositoryAdapter.save(countrySaved));
     }
 

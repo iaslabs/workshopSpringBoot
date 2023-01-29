@@ -8,11 +8,17 @@ public class CountryDTO {
 
     private Long id;
     private String countryName;
-    private String countryZone;
+    private Long countryZone;
 
     public CountryDTO(Long id, String countryName) {
         this.id = id;
         this.countryName = countryName;
+    }
+
+    public CountryDTO(Long id, String countryName, Long countryZone) {
+        this.id = id;
+        this.countryName = countryName;
+        this.countryZone = countryZone;
     }
 
     public Long getId() {
@@ -31,11 +37,11 @@ public class CountryDTO {
         this.countryName = countryName;
     }
 
-    public String getCountryZone() {
+    public Long getCountryZone() {
         return countryZone;
     }
 
-    public void setCountryZone(String countryZone) {
+    public void setCountryZone(Long countryZone) {
         this.countryZone = countryZone;
     }
 
