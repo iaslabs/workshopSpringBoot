@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/bird")
 @AllArgsConstructor
@@ -17,7 +19,12 @@ public class BirdEntryPoint {
 
     @GetMapping
     public ResponseEntity<?> get(){
-        return new ResponseEntity(birdUseCase.findAllBirds(), HttpStatus.OK);
+        List<BirdDTO> birds = birdUseCase.findAllBirds();
+        if(birds.isEmpty()){
+            return new ResponseEntity(birds, HttpStatus.NOT_FOUND);
+        }else{
+            return new ResponseEntity(birds, HttpStatus.OK);
+        }
     }
 
     @GetMapping("/{id}")
@@ -33,5 +40,10 @@ public class BirdEntryPoint {
     @PutMapping
     public ResponseEntity<?> update(@RequestBody BirdDTO birdDTO){
         return new ResponseEntity(birdUseCase.updateBird(birdDTO), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id){
+        return new ResponseEntity(birdUseCase.deleteBird(id), HttpStatus.OK);
     }
 }

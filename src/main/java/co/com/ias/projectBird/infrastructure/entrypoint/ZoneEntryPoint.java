@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/zone")
 @AllArgsConstructor
@@ -17,7 +19,14 @@ public class ZoneEntryPoint {
 
     @GetMapping
     public ResponseEntity<?> get(){
-        return new ResponseEntity(zoneUseCase.findAllZones(), HttpStatus.OK);
+
+        List<ZoneDTO> zones = zoneUseCase.findAllZones();
+        if(zones.isEmpty()){
+            return new ResponseEntity(zones, HttpStatus.NOT_FOUND);
+        }else{
+            return new ResponseEntity(zones, HttpStatus.OK);
+        }
+
     }
 
     @GetMapping("/{id}")
@@ -33,5 +42,10 @@ public class ZoneEntryPoint {
     @PutMapping
     public ResponseEntity<?> update(@RequestBody ZoneDTO zoneDTO){
         return new ResponseEntity(zoneUseCase.updateZone(zoneDTO), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+        public ResponseEntity<?> delete(@PathVariable(name = "id") Long id){
+        return new ResponseEntity(zoneUseCase.deleteZone(id), HttpStatus.OK);
     }
 }

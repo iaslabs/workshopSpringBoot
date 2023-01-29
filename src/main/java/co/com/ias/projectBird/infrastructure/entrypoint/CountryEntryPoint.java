@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/country")
 @AllArgsConstructor
@@ -18,7 +20,12 @@ public class CountryEntryPoint {
 
     @GetMapping
     public ResponseEntity<?> get(){
-        return new ResponseEntity(countryUseCase.findAllCountries(), HttpStatus.OK);
+        List<CountryDTO> countries = countryUseCase.findAllCountries();
+        if(countries.isEmpty()){
+            return new ResponseEntity(countries, HttpStatus.NOT_FOUND);
+        }else{
+            return new ResponseEntity(countries, HttpStatus.OK);
+        }
     }
 
     @GetMapping("/{id}")
@@ -34,5 +41,10 @@ public class CountryEntryPoint {
     @PutMapping
     public ResponseEntity<?> update(@RequestBody CountryDTO countryDTO){
         return new ResponseEntity(countryUseCase.updateCountry(countryDTO), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable(name = "id") Long id){
+        return new ResponseEntity(countryUseCase.deleteCountry(id), HttpStatus.OK);
     }
 }
