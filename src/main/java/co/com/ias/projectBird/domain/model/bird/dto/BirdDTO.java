@@ -47,7 +47,7 @@ public class BirdDTO {
         this.scientificName = scientificName;
     }
 
-    public Bird toDomain(BirdDTO birdDTO){
+    public static Bird toDomain(BirdDTO birdDTO){
         return  new Bird(
                 new BirdCommonName(birdDTO.getCommonName()),
                 new BirdId(birdDTO.getId()), new BirdScientificName(birdDTO.getScientificName())
