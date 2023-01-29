@@ -35,10 +35,6 @@ public class ZoneDTO {
     }
 
     public static ZoneDTO fromDomain(Zone in) {
-        return new ZoneDTO(in
-                                   .getZoneId()
-                                   .getValue(), in
-                                   .getZoneName()
-                                   .getValue());
+        return new ZoneDTO(in.getZoneId().getValue(), in.getZoneName().getValue());
     }
 }

@@ -10,10 +10,10 @@ public class CountryDTO {
     private String countryName;
     private Long countryZone;
 
-    public CountryDTO(Long id, String countryName) {
-        this.id = id;
-        this.countryName = countryName;
-    }
+//    public CountryDTO(Long id, String countryName) {
+//        this.id = id;
+//        this.countryName = countryName;
+//    }
 
     public CountryDTO(Long id, String countryName, Long countryZone) {
         this.id = id;
@@ -50,6 +50,6 @@ public class CountryDTO {
     }
 
     public static CountryDTO fromDomain(Country in) {
-        return new CountryDTO(in.getId().getValue(), in.getCountryName().getValue());
+        return new CountryDTO(in.getId().getValue(), in.getCountryName().getValue(), null);
     }
 }
