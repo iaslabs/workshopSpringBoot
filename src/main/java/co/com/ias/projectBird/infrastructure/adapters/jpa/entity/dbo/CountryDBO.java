@@ -33,6 +33,7 @@ public class CountryDBO {
 			joinColumns = @JoinColumn(name = "bird_id"),
 			inverseJoinColumns = @JoinColumn(name = "country_id"))
 	@JsonIgnoreProperties("countriesList")
+//	@ManyToMany(mappedBy = "countriesList")
 	private List<BirdDBO> birdsList;
 
 	public CountryDBO(Long id, String countryName) {

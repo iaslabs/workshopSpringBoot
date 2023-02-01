@@ -34,6 +34,12 @@ public class BirdDBO {
 			},
 			mappedBy = "birdsList")
 	@JsonIgnoreProperties("birdsList")
+//	@ManyToMany(mappedBy = "birdsList")
+//	@ManyToMany
+//	@JoinTable(
+//		name = "bird_country",
+//		joinColumns = @JoinColumn(name = "bird_id"),
+//		inverseJoinColumns = @JoinColumn(name = "country_id"))
 	private List<CountryDBO> countriesList;
 
 	public BirdDBO(Long id, String commonName, String scientificName) {

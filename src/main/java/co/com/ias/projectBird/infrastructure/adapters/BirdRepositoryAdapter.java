@@ -1,14 +1,17 @@
 package co.com.ias.projectBird.infrastructure.adapters;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 import co.com.ias.projectBird.domain.model.bird.Bird;
+import co.com.ias.projectBird.domain.model.country.Country;
 import co.com.ias.projectBird.domain.model.gateaway.IBirdRepository;
 import co.com.ias.projectBird.infrastructure.adapters.jpa.IBirdRepositoryAdapter;
 import co.com.ias.projectBird.infrastructure.adapters.jpa.entity.dbo.BirdDBO;
+import co.com.ias.projectBird.infrastructure.adapters.jpa.entity.dbo.CountryDBO;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -19,8 +22,13 @@ public class BirdRepositoryAdapter implements IBirdRepository {
     private final IBirdRepositoryAdapter iBirdRepositoryAdapter;
 
     @Override
-    public Bird saveBird(Bird bird) {
-        BirdDBO birdSaved = iBirdRepositoryAdapter.save(BirdDBO.fromDomain(bird));
+    public Bird saveBird(Bird bird, List<Country> countries) {
+        BirdDBO birdDBO = BirdDBO.fromDomain(bird);
+        if(!countries.isEmpty()){
+            List<CountryDBO> countriesDBO = countries.stream().map(CountryDBO::fromDomain).collect(Collectors.toList());
+            birdDBO.setCountriesList(countriesDBO);
+        }
+        BirdDBO birdSaved = iBirdRepositoryAdapter.save(birdDBO);
         return BirdDBO.toDomain(birdSaved);
 
     }

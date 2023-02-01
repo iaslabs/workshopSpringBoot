@@ -1,8 +1,6 @@
 package co.com.ias.projectBird.domain.model.bird.dto;
 
 import co.com.ias.projectBird.domain.model.bird.*;
-import co.com.ias.projectBird.domain.model.country.Country;
-import co.com.ias.projectBird.domain.model.country.dto.CountryDTO;
 
 import java.util.List;
 
@@ -14,8 +12,15 @@ public class BirdDTO {
 
     private String scientificName;
 
+    private List<Long> countriesId;
 
+    public List<Long> getCountriesId() {
+        return countriesId;
+    }
 
+    public void setCountriesId(List<Long> countriesId) {
+        this.countriesId = countriesId;
+    }
 
     public BirdDTO(Long id, String commonName, String scientificName) {
         this.id = id;

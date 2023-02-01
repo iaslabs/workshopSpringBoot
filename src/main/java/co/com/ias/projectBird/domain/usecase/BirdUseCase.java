@@ -2,6 +2,7 @@ package co.com.ias.projectBird.domain.usecase;
 
 import co.com.ias.projectBird.domain.model.bird.Bird;
 import co.com.ias.projectBird.domain.model.bird.dto.BirdDTO;
+import co.com.ias.projectBird.domain.model.country.Country;
 import co.com.ias.projectBird.domain.model.gateaway.IBirdRepository;
 import co.com.ias.projectBird.domain.model.gateaway.ICountryRepository;
 
@@ -21,8 +22,15 @@ public class BirdUseCase {
 
 
     public BirdDTO saveBird(BirdDTO birdDTO) {
+        List<Country> countries = new ArrayList<>();
+        if(birdDTO.getCountriesId() != null){
+            List<Long> countriesId = birdDTO.getCountriesId();
+            countriesId.forEach(country -> {
+                countries.add(this.iCountryRepository.findCountryById(country));
+            });
+        }
         Bird bird = birdDTO.toDomain(birdDTO);
-        return BirdDTO.fromDomain(this.iBirdRepository.saveBird(bird));
+        return BirdDTO.fromDomain(this.iBirdRepository.saveBird(bird, countries));
     }
 
     public BirdDTO findBirdById(Long id) {
