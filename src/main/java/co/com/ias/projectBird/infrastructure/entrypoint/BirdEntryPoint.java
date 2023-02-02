@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/bird")
 @AllArgsConstructor
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class BirdEntryPoint {
 
     private final BirdUseCase birdUseCase;

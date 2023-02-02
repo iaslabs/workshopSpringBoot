@@ -6,6 +6,7 @@ import co.com.ias.projectBird.domain.model.country.CountryName;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 

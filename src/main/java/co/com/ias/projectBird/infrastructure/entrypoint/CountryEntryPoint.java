@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/country")
 @AllArgsConstructor
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class CountryEntryPoint {
 
     private final CountryUseCase countryUseCase;

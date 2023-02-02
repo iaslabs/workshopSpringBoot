@@ -5,6 +5,7 @@ import co.com.ias.projectBird.domain.model.zone.ZoneId;
 import co.com.ias.projectBird.domain.model.zone.ZoneName;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 @Entity
 @Table(name = "zone")

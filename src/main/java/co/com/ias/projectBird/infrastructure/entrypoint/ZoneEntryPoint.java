@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/zone")
 @AllArgsConstructor
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ZoneEntryPoint {
 
     private final ZoneUseCase zoneUseCase;
